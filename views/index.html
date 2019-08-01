@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- 부트스트랩 사용하기 위한 스크립트 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- 구글 폰트 및 아이콘 -->
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title> 19.07.12 index.html</title>
+    <style>
+        /* body 스타일 */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* 배경 이미지 설정 */
+        /* .hero-image {
+            background-image: url("../images/3.jpg");
+            background-color: #cccccc;
+            height: 300px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        } */
+
+        /* 배경 텍스트 설정 */
+        .hero-text {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+    </style>
+    <script> </script>
+
+    <% include ./inc/navbar.ejs %>
+</head>
+
+<body class="container hero-image" style="font-family: 'Jua', sans-serif;">
+
+
+    <!-- header -->
+    <div class="header" style="background-color:lavenderblush;" >
+        <h3> this is header area, 차량 이력 조회</h3>
+    </div>
+
+
+    <!-- main -->
+    <div class="row">
+
+     
+
+        <!-- side -->
+        <div class="side col-sm-4">
+            <h3> this is side area
+                <i class="far fa-search-location"></i>
+            </h3>
+        </div>
+
+        <!-- main -->
+        <div class="main col-sm-8">
+            <h3>this is main area</h3>
+            <form action='http://70.12.50.184:3000' method="POST">
+                <div>
+                    <a class=" btn btn btn-outline-secondary" href="/user_list">userlist.html(관리자폼 으로)</a>
+                    <a class=" btn btn-outline-primary" href="/login_form">login_form.html(로그인폼 요청)</a>
+                    <a class=" btn btn-outline-success" href="/signup_form">signin_form.html(회원가입폼 요청)</a>
+                    <a class=" btn btn-outline-secondary" href="/regcar_form">regcar_form.html(자동차 등록폼 요청)</a>
+                    <a class=" btn btn-outline-info" href="/car_info">carinfo.html(자동차 정보 조회폼 요청)</a>
+                    <a class=" btn btn-outline-warning" href="/car_history">carhistory.html(자동차 이력조회폼 요청)</a>
+                    <a class=" btn btn-outline-danger" href="/car_list">carlist.html(자동차 리스트 조회폼 요청)</a>
+                </div>
+            </form>
+            <!-- <img src="/images/car.jpg" class="rounded" alt="Cinque Terre"> -->
+        </div>
+    </div><!-- main div end -->
+
+    <!-- footers -->
+    <div class="footers" style="background-color:lavender;">
+        <h3>this is footer area</h3>
+    </div> <!-- footer div end -->
+
+
+</body>
+
+</html>

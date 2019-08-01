@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+   <title>signup_form</title>
+   <style>
+      #form {
+         /* Size & position */
+         width: 300px;
+         margin: 60px auto 30px;
+         padding: 10px;
+         position: relative;
+         /* For the submit button positioning */
+
+         /* Styles */
+         box-shadow:
+            0 0 1px rgba(0, 0, 0, 0.3),
+            0 3px 7px rgba(0, 0, 0, 0.3),
+            inset 0 1px rgba(255, 255, 255, 1),
+            inset 0 -3px 2px rgba(243, 243, 243, 0.25);
+         border-radius: 5px;
+         background: linear-gradient(#eeefef, #ffffff 10%);
+      }
+
+      .text-form {
+         background: #f0f1f1;
+         margin: auto;
+         width: 200px;
+         height: 50px;
+         vertical-align: middle;
+         position: relative;
+      }
+   </style>
+</head>
+
+<body class="container">
+
+   <form action="/signup" method="POST" id="form">
+      <div>
+         <h1>signup_form</h1>
+         <input type="text" name="username" class="text-form" placeholder="username"><br>
+         <input type="text" name="userid" class="text-form" placeholder="userid"><br>
+         <input type="password" name="password" class="text-form" placeholder="password"><br>
+         <input type="tel" name="tel" class="text-form" placeholder="tel"><br>
+         <input type="text" name="address" class="text-form" placeholder="address"><br>
+         <input type="email" name="email" class="email-form" placeholder="email"><br>
+         <input type="submit" value="등록">
+         <button type="button"><a href="index.html">취소</a></button>
+      </div>
+   </form>
+</body>
+
+</html>

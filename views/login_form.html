@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+   <title>login</title>
+   <style>
+      #form {
+         /* Size & position */
+         width: 300px;
+         margin: 60px auto 30px;
+         padding: 10px;
+         position: relative;
+         /* For the submit button positioning */
+
+         /* Styles */
+         box-shadow:
+            0 0 1px rgba(0, 0, 0, 0.3),
+            0 3px 7px rgba(0, 0, 0, 0.3),
+            inset 0 1px rgba(255, 255, 255, 1),
+            inset 0 -3px 2px rgba(0, 0, 0, 0.25);
+         border-radius: 5px;
+         background: linear-gradient(#eeefef, #ffffff 10%);
+      }
+
+      #loginbt {
+         border-radius: 90%;
+         box-shadow: 0 0 6px 4px #fff;
+         font-family: 'Ubuntu', 'Lato', sans-serif;
+         color: black;
+         font-weight: 700;
+         font-size: 15px;
+         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+      }
+   </style>
+</head>
+
+<body class="container">
+
+   <!-- 받아 오고 싶은 데이터 받을때 form 쓴다 -->
+   <form action="/login" method="POST" id="form">
+      <div>
+         <h1>Log in</h1>
+         <!-- <% if(fmsg&&fmsg.length >0) { %>
+            <div class="alter alter-error">  세션 메세지:  <%= smsg %> </div>
+            <% } %> -->
+         <p class="clearfix">
+            <input type="text" name="userid" class="text-form" placeholder="Userid"><br>
+         </p>
+         <p class="clearfix">
+            <input type="password" name="password" class="text-form" placeholder="Password"><br>
+         </p>
+         <input type="submit" value="Log in" id="loginbt"><br>
+         <input type="checkbox" name="remember" value="remember">Remember me
+         &nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="#" id="forgotpw">Forgot Password?</a><br>
+      </div>
+      <div>
+         <a href="#">Create an account</a>
+      </div>
+   </form>
+</body>
+
+</html>

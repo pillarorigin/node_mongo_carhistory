@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <title> car list</title>
+
+    <style>
+
+    </style>
+
+
+
+    <script>
+
+        //자동차 번호로 search (07.11)
+        function searchByCarNum() {
+            //변수 지정
+            let searchText = $('#searchtext').val();
+            let searchKind = $('#search').val();
+            // let $target = $('#list'); //$+변수명은 관습상 jQuery 변수임을 나타냄 
+            $.ajax({
+                type: 'POST',
+                url: '/api/search',
+                dataType: 'json',
+                data: { "searchText": searchText, "searchKind":searchKind },
+                success: function (box) {
+                    // console.log('success');
+                    // console.log(box);
+
+                    //target에 있는 item update
+                    $('#list').empty();
+                    $.each(box, function (i, item) {
+                        $('#list').append(`
+                            <tr>
+                            <td>${i + 1}</td> 
+                            <td>${item.carimage}</td>
+                            <td>${item.carNumber}</td>
+                            <td>${item.owner}</td>
+                            <td>${item.model}</td>
+                            <td>${item.company}</td>
+                            <td>${item.numOfAccident}</td>
+                            <td>${item.numOfOwnerChange}</td>
+                            </tr>
+                             `);
+                    });
+                    
+                    // for (i = 0; i < box.length; i++) {
+                    //     $('#list').append(`
+                    //         <tr>
+                    //         <td>${i + 1}</td> 
+                    //         <td>${box["22주2222"].carNumber}</td>
+                    //         <td>${box.owner}</td>
+                    //         <td>${box.model}</td>
+                    //         <td>${box.company}</td>
+                    //         <td>${box.numOfAccident}</td>
+                    //         <td>${box.numOfOwnerChange}</td>
+                    //         </tr>
+                    //         `);
+                   
+                    // }
+                }
+            });
+        }
+        // 제조사로 search (07.11)
+        // function searchByCompany() {
+        //     let searchText = $('#searchtext2').val();
+        //     let $target = $('#list');
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/api/filter',
+        //         dataType: 'json',
+        //         data: { "searchText": searchText },
+        //         success: function (list) { 
+        //             console.log('success');
+        //             console.log(list)
+        //             //왜? i+1?
+        //             //target에 있는 item update
+        //             $target.empty();
+        //             $.each(list, function (i, item) {
+        //                 $target.append(`
+        //                     <tr>
+        //                     <td>${i + 1}</td> 
+        //                     <td>${item.carimage}</td>
+        //                     <td>${item.carNumber}</td>
+        //                     <td>${item.owner}</td>
+        //                     <td>${item.model}</td>
+        //                     <td>${item.company}</td>
+        //                     <td>${item.numOfAccident}</td>
+        //                     <td>${item.numOfOwnerChange}</td>
+        //                     </tr>
+        //                      `);
+        //             });
+        //         }
+        //     });
+        // }
+
+        //3.  form 태그 이용, js객체로 만드는 함수
+        function serializeObject($form) {
+            var unindexed_array = $form.serializeArray();
+            var indexed_array = {}; //js obj로 만듬
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+            return indexed_array;
+        }
+
+        //1. ajax로 임의 데이터 입력
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                let newData = serializeObject($('form[name=you]'));
+                // console.log(newData);
+                //alter($('form[name=regform')).serialize().serializeObject());
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/regcar',
+                    dataType: 'json',
+                    data: newData,
+                    success: function (data) {
+                        // console.log('success');
+                        // console.log(data);
+                        $.each(data, function (i, item) {
+                            //아래 tr, td 추가 (data0번에 carNumber넣어줘-> 한줄 한줄 너무 많으니 for each 구문 사용)
+                            $('#list').append(`
+                            <tr>
+                                <td>${i + 1}</td>
+                                <td>${item.carimage}</td>
+                                <td>${item.carNumber}</td>
+                                <td>${item.owner}</td>
+                                <td>${item.model}</td>
+                                <td>${item.company}</td>
+                                <td>${item.numOfAccident}</td>
+                                <td>${item.numOfOwnerChange}</td>
+                            </tr>
+                        `)
+                        })
+                    },
+                    error: function (err) {
+                        console.log('err');
+                    }
+                });
+            });
+        });
+
+    </script>
+
+<% include ./inc/navbar.ejs %>
+
+</head>
+
+<body class="container mt-3">
+    <div>
+        <h2 class="bg-dark text-white" style="text-align: center">Car list</h2>
+        <form name="you">
+            <input type="text" autofocus placeholder="차량번호입력" class="form-control" name="carNumber">
+            <input type="text" placeholder="차량 소유자" class="form-control" name="owner">
+            <input type="text" placeholder="챠종" class="form-control" name="model">
+            <input type="text" placeholder="제조사" class="form-control" name="company">
+            <input type="text" placeholder="사고기록" class="form-control" name="numOfAccident">
+            <input type="text" placeholder="소유이전기록" class="form-control" name="numOfOwnerChange">
+            <input type="button" class="btn btn-primary" id="submit" value="등록">
+           
+        </form>
+
+        <div class="row">
+            <% if(locals.id) { %>
+            <%= id %> 님 안녕하세요.
+            <% } %>
+            <!--(get) logincooike -> (post) userinfo -> name 의 키를 불러-->
+        </div>
+
+        <div>
+            <select id="search">
+                <option value =""> 검색 방법</option>
+                <option value="carNumber">차량번호 검색</option>
+                <option value="company">제조사 검색</option>
+            </select>
+
+            <input type="text" id="searchtext" >
+            <button class="btn btn-primary click_change" id="btn_search1" onclick="searchByCarNum();">검색</button> 
+            <!-- <input type="text" id="searchtext2" placeholder="제조사 검색" value="">
+            <button class="btn btn-primary" id="btn_search2" onclick="searchByCompany();">검색</button> -->
+        </div>
+
+        <table id="list" class="table">
+                <!-- EJS로 for 돌려 -->
+                 <% for (i=0; i<list.length; i++) { %>
+                        <tr>
+                                <td><%= i+1 %> </td>
+                                <td><%= list[i].carimage %> </td>
+                                <td><%= list[i].carNumber %> </td>
+                                <td><%= list[i].owner %> </td>
+                                <td><%= list[i].model %> </td>
+                                <td><%= list[i].company %> </td>
+                                <td><%= list[i].numOfAccident %> </td>
+                                <td><%= list[i].numOfOwnerChange %> </td>
+                            </tr>
+                 <% } %>
+            </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+//0. form이 넘어갈때, name(carNumber,owner 등)과 value가 객체형태로 전달됨.
+{carNumber:'123', owner:'qwesdasdf', ... }
+
+
+let box = {
+aa : ss
+}; //객체의 키값 정해
+box["aa"]=ss;
+box.aa=ss;
+같은 애임
+   let data = req.body.searchKind;
+    let data_name = req.body.searchText;
+    let box ={};
+  
+    for(let i=0; i < sampleCarList.length; i++){
+        if(sampleCarList[i].data == data_name){
+            box[sampleCarList[i].model] = sampleCarList[i];
+        }
+    };
+
+
+//1. 세션 유지 코드에서 undefined와  not defined 차이 이해.
+
+일반적으로 객체(변수)가 선언되었으나, 값이 설정 되지 않은 경우, undefined 체크.
+var x;
+if(x === undefined) {
+...
+}
+
+하지만 아래와 같이 x 객체가 선언되어 있지도 않아, 실제 자체가 없다면 
+'Uncaught ReferenceError: x is not defined(…)'오류 발생
+//var x;
+if(x == true) {
+...
+} else {
+...
+}
+
+결론은, 객체의 값이 undefined인지, 객체 자체가 undefined인지로 접근하면 이해하기 쉬울 것 같습니다.
+객체에 undefined의 값을 먼저 넣어주고 해당 user의 정보를 객체의 undefined값의 자리에 넣어 주어야
+
+//2. 객체의 라이프 사이클 생각해보기!!
+const express = require('express')();
+const app = express();
+const app = require('express')();
+셋다 같은 의미.
+
+app.locals 객체나 res.locals 객체의 속성들은 모두 템플릿에서 접근이 가능합니다만.
+res 객체는 클라이언트의 연결마다 매번 생겼다가 바로 해제됩니다.
+app 객체는 서버가 실행되기 전부터 존재하죠.
+
+app.locals.user 같은 방식은 모든 연결이 같은 user는 아닐테니 말이 안되죠?
+res.locals.user 는 말이됩니다. res.locals는 각 요청별로 한 라이프사이클 동안만 유요한 템플릿 전역 변수이기 때문입니다. 따라서 미들웨어를 쓰거나 라우터 핸들러 안에서 res.locals에 속성을 할당하게 되지요.
+
+//객체 라이프 사이클 예시 코드
+app.use((req,res,next) => {
+    // 각 요청마다 다른 세션 값을 res.locals.user에 할당합니다.
+    // 이 때문에 요청마다 템플릿의 user 변수가 달라질 있습니다.
+    res.locals.user = req.session.user || null;
+    next();
+});
+
+
+// 3. 배열 안의 객체의 객체 키 출력 이해하기.
+[{key:value}] 
+
+
+//4. $.each문
+//box 객체의 첫번째 속성의 키값이 item
+ $.each(box, function (i, item) {
+    $('#list').append(`
+        <tr>
+        <td>${i + 1}</td> 
+        <td>${item.carNumber}</td>
+        <td>${item.owner}</td>
+        <td>${item.model}</td>
+        <td>${item.company}</td>
+        <td>${item.numOfAccident}</td>
+        <td>${item.numOfOwnerChange}</td>
+        </tr>
+        `);
+    );
+
+
+//5. router , 미들웨어 
+
+
+
+=====================================07.15===================================
