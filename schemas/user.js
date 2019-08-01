@@ -14,3 +14,5 @@ const userSchema = new Schema({
  });
  
  module.exports = mongoose.model('User', userSchema);
+
+ //user에 userSchema 담아
